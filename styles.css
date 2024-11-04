@@ -1,0 +1,82 @@
+:root {
+    --blue-color: #00509B;
+    --green-color: #0D9B00;
+    --red-color: #F50004;
+    --gray-one: #D9D9D9;
+    --gray-two: #9D9D9D;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+    height: 72px;
+    width: auto;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+    justify-content: center;
+    align-items: center;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.spot {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    background-color: var(--gray-one);
+}
+
+.spot:hover {
+    background-color: var(--gray-two);
+}
+
+button.restart {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	outline: inherit;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 246px;
+    height: 52px;
+    background-color: var(--red-color);
+    border-radius: 16px;
+}

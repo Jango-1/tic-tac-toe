@@ -4,10 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <style src="./script.js"></style>
+    <script src="./script.js"></script>
     <title>Document</title>
 </head>
 <body>
-    
+    <nav>
+        <img src="./images/bars.png" alt="Menu button">
+        <h1>Tic-Tac-Toe, Go!</h1>
+        <img src="./images/gear.png" alt="Settings button">
+    </nav>
+
+    <div class="main">
+        <div class="status">
+            <img src="./images/prop-x.png" alt="x-mark">
+            <p>Choose your spot...</p>
+        </div>
+
+        <div class="game-board">
+            <div class="row">
+                <div class="spot" id="spot1"></div>
+                <div class="spot" id="spot2"></div>
+                <div class="spot" id="spot3"></div>
+            </div>
+            <div class="row">
+                <div class="spot" id="spot4"></div>
+                <div class="spot" id="spot5"></div>
+                <div class="spot" id="spot6"></div>
+            </div>
+            <div class="row">
+                <div class="spot" id="spot7"></div>
+                <div class="spot" id="spot8"></div>
+                <div class="spot" id="spot9"></div>
+            </div>
+        </div>
+
+        <button class="restart">
+            <p>Restart</p>
+            <img src="./images/rotate-right.png" alt="Refresh icon">
+        </button>
+    </div>
 </body>
 </html>
