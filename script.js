@@ -33,6 +33,7 @@ function placeMarker(spot) {
         markerImage.style.height = "64px";
         
         spotElement.appendChild(markerImage);
+        spotElement.style.backgroundColor = "white";
         
         const winningPattern = checkWin();
         if (winningPattern) {
