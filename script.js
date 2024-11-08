@@ -3,6 +3,16 @@ const player1 = { marker: "X" };
 const player2 = { marker: "O" };
 let currentPlayer = player1;
 
+const boardSpot = document.querySelectorAll("div.spot");
+const markIndicator = document.querySelector("img.mark-indicator");
+
+boardSpot.forEach(spot => {
+    spot.addEventListener("click", () => {
+        placeMarker(spot.getAttribute("id"));
+        spot.classList.add(currentPlayer.marker);
+    });
+});
+
 const winPatterns = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
     [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
@@ -10,22 +20,33 @@ const winPatterns = [
 ];
 
 function placeMarker(spot) {
-    if (board[spot] === null) {
-        board[spot] = currentPlayer.marker;
+    const index = parseInt(spot) - 1; // Convert to zero-based index
+    if (board[index] === null) {
+        board[index] = currentPlayer.marker;
         const winner = checkWin();
+        
+        // Update the visual marker in the HTML
+        const spotElement = document.getElementById(spot);
+        const markerImage = document.createElement("img");
+        markerImage.src = currentPlayer.marker === "X" ? "./images/prop-x.png" : "./images/prop-o.png";
+        markerImage.alt = currentPlayer.marker + " mark";
+        markerImage.style.height = "64px"; // Set image size
+        
+        spotElement.appendChild(markerImage); // Add image to the spot element
+        
         if (winner) {
             console.log(`${winner} wins!`);
             resetBoard();
             return;
         }
         if (!board.includes(null)) {
-            console.log("It's a draw!");
+            console.log("Draw!");
             resetBoard();
             return;
         }
         currentPlayer = currentPlayer === player1 ? player2 : player1;
     } else {
-        console.log("Spot is already taken! Choose another.");
+        console.log("Spot taken.");
     }
 }
 

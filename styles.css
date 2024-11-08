@@ -74,6 +74,9 @@ nav {
 }
 
 .spot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 100px;
     flex-shrink: 0;
@@ -103,4 +106,12 @@ button.restart {
     height: 52px;
     background-color: var(--red-color);
     border-radius: 16px;
+}
+
+.X {
+    background-color: white;
+}
+
+.O {
+    background-color: white;
 }
