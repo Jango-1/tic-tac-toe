@@ -6,11 +6,13 @@ let currentPlayer = player1;
 const boardSpot = document.querySelectorAll("div.spot");
 const markIndicator = document.querySelector("img.mark-indicator");
 const resetButton = document.querySelector("button");
+const statusMessage = document.querySelector("p.status-message");
 
 boardSpot.forEach(spot => {
     spot.addEventListener("click", () => {
         placeMarker(spot.getAttribute("id"));
         spot.classList.add(currentPlayer.marker);
+        markIndicator.src = currentPlayer.marker === "X" ? "./images/prop-x.png" : "./images/prop-o.png";
     });
 });
 
@@ -21,23 +23,22 @@ const winPatterns = [
 ];
 
 function placeMarker(spot) {
-    const index = parseInt(spot) - 1; // Convert to zero-based index
+    const index = parseInt(spot) - 1;
     if (board[index] === null) {
         board[index] = currentPlayer.marker;
-        const winner = checkWin();
-        
-        // Update the visual marker in the HTML
         const spotElement = document.getElementById(spot);
         const markerImage = document.createElement("img");
         markerImage.src = currentPlayer.marker === "X" ? "./images/prop-x.png" : "./images/prop-o.png";
         markerImage.alt = currentPlayer.marker + " mark";
-        markerImage.style.height = "64px"; // Set image size
+        markerImage.style.height = "64px";
         
-        spotElement.appendChild(markerImage); // Add image to the spot element
+        spotElement.appendChild(markerImage);
         
-        if (winner) {
-            console.log(`${winner} wins!`);
-            resetBoard();
+        const winningPattern = checkWin();
+        if (winningPattern) {
+            highlightWinningPattern(winningPattern);
+            setTimeout(resetBoard, 1500);
+            statusMessage.innerHTML = "Wins!"
             return;
         }
         if (!board.includes(null)) {
@@ -53,12 +54,9 @@ function placeMarker(spot) {
 
 function checkWin() {
     for (let i = 0; i < winPatterns.length; i++) {
-        const pattern = winPatterns[i];
-        const a = pattern[0];
-        const b = pattern[1];
-        const c = pattern[2];
+        const [a, b, c] = winPatterns[i];
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            return board[a];  // Return the winning marker
+            return winPatterns[i];  // Return the winning pattern indices
         }
     }
     return null; // No winner
@@ -73,7 +71,17 @@ function resetBoard() {
     boardSpot.forEach(spot => {
         spot.innerHTML = '';
         spot.classList.remove("X", "O");
+        spot.style.backgroundColor = "var(--gray-one)";
     });
     currentPlayer = player1;
+    markIndicator.src = "./images/prop-x.png";
+    statusMessage.innerHTML = "Chose your spot..."
     console.log("Board reset! Start a new game.");
+}
+
+function highlightWinningPattern(pattern) {
+    pattern.forEach(index => {
+        const spot = boardSpot[index];
+        spot.style.backgroundColor = currentPlayer.marker === "X" ? "var(--blue-color)" : "var(--green-color)";
+    });
 }

@@ -2,6 +2,7 @@
     --blue-color: #00509B;
     --green-color: #0D9B00;
     --red-color: #F50004;
+    --dark-red-color: #700103;
     --gray-one: #D9D9D9;
     --gray-two: #9D9D9D;
 }
@@ -86,6 +87,7 @@ nav {
 
 .spot:hover {
     background-color: var(--gray-two);
+    cursor: pointer;
 }
 
 button.restart {
@@ -106,6 +108,13 @@ button.restart {
     height: 52px;
     background-color: var(--red-color);
     border-radius: 16px;
+    cursor: pointer;
+}
+
+button.restart:active {
+    background-color: var(--dark-red-color);
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .X {
