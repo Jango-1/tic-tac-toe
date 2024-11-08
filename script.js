@@ -5,6 +5,7 @@ let currentPlayer = player1;
 
 const boardSpot = document.querySelectorAll("div.spot");
 const markIndicator = document.querySelector("img.mark-indicator");
+const resetButton = document.querySelector("button");
 
 boardSpot.forEach(spot => {
     spot.addEventListener("click", () => {
@@ -63,7 +64,16 @@ function checkWin() {
     return null; // No winner
 }
 
+resetButton.addEventListener("click", () => {
+    resetBoard();
+});
+
 function resetBoard() {
     board = Array(9).fill(null);
+    boardSpot.forEach(spot => {
+        spot.innerHTML = '';
+        spot.classList.remove("X", "O");
+    });
+    currentPlayer = player1;
     console.log("Board reset! Start a new game.");
 }
